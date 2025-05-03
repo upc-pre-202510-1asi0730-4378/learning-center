@@ -27,9 +27,11 @@ import {
     SelectButton, Tag, Textarea, Toast,
     ToastService, Toolbar
 } from "primevue";
+import pinia from "./pinia.js";
 
 const app = createApp(App);
 app.use(i18n)
+    .use(pinia)
     .use(PrimeVue, {theme: { preset: Material}, ripple: true})
     .use(ConfirmationService)
     .use(DialogService)
