@@ -4,16 +4,22 @@
  */
 
 import {createRouter, createWebHistory} from "vue-router";
+import HomeComponent from "../public/pages/home.component.vue";
+import AboutComponent from "../public/pages/about.component.vue";
+import CategoryManagementComponent from "../publishing/pages/category-management.component.vue";
+import PageNotFoundComponent from "../public/pages/page-not-found.component.vue";
+
 
 /**
  * @description Lazy-loaded component imports for route configuration
  * Using dynamic imports to enable code splitting and improve initial load performance
  */
+/*
 const HomeComponent                 = () => import('../public/pages/home.component.vue');
 const AboutComponent                = () => import('../public/pages/about.component.vue');
 const CategoryManagementComponent   = () => import('../publishing/pages/category-management.component.vue');
 const PageNotFoundComponent         = () => import('../public/pages/page-not-found.component.vue');
-
+*/
 /**
  * @type {import('vue-router').RouteRecordRaw[]}
  * @description Application route definitions.
@@ -36,8 +42,8 @@ const routes = [
  * @description Vue Router instance configured with HTML5 history mode
  */
 const router = createRouter({
-    history: createWebHistory(),
-    routes: routes
+    history: createWebHistory(import.meta.env.BASE_URL),
+    routes
 });
 
 /**
@@ -51,12 +57,10 @@ const router = createRouter({
  * @param {import('vue-router').NavigationGuardNext} next - Function to resolve the navigation
  */
 router.beforeEach((to, from, next) => {
-    // navigation logging
-    console.log(`navigating from ${from} to ${to}`);
+    console.log(`Navigating from ${from.name} to ${to.name}`);
     // Set the page title
     let baseTitle = 'ACME Learning Center';
     document.title = `${baseTitle} | ${to.meta['title']}`;
-    next();
 });
 
 export default router;

@@ -1,11 +1,10 @@
 import {createApp} from 'vue'
 import './style.css'
-import App from './App.vue'
 import i18n from "./i18n.js";
 import {PrimeVue} from "@primevue/core";
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
-import Material from '@primevue/themes/material';
+import Material from '@primeuix/themes/material';
 import {
     Button,
     Card,
@@ -36,11 +35,12 @@ import {
 } from "primevue";
 import pinia from "./pinia.js";
 import router from "./router/index.js";
+import App from "./app.vue";
 
 const app = createApp(App);
 app.use(i18n)
     .use(pinia)
-    .use(router)
+
     .use(PrimeVue, {theme: { preset: Material}, ripple: true})
     .use(ConfirmationService)
     .use(DialogService)
@@ -68,4 +68,5 @@ app.use(i18n)
     .component('pv-textarea',       Textarea)
     .component('pv-toolbar',        Toolbar)
     .component('pv-toast',          Toast)
+    .use(router)
     .mount('#app')
