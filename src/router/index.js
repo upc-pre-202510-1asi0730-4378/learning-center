@@ -9,12 +9,22 @@ const routes = [
     { path: '/home',                    name: 'home',       component: HomeComponent,               meta: { title: 'Home' } },
     { path: '/about',                   name: 'about',      component: AboutComponent,              meta: { title: 'About us' } },
     { path: '/publishing/categories',   name: 'categories', component: CategoryManagementComponent, meta: { title: 'Categories' } },
+    { path: '/',                        name: 'default',    redirect: { name: 'home' } },
     { path: '/:pathMatch(.*)*',         name: 'not-found',  component: PageNotFoundComponent,       meta: { title: 'Page not found' } },
 ]
 
 const router = createRouter({
     history: createWebHistory(),
     routes: routes
+});
+
+router.beforeEach((to, from, next) => {
+    // transition to the new page
+    console.log(`navigating from ${from} to ${to}`);
+    // Set the page title
+    let baseTitle = 'ACME Learning Center';
+    document.title = `${baseTitle} | ${to.meta['title']}`;
+    next();
 });
 
 export default router;
