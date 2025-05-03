@@ -35,10 +35,12 @@ import {
     Toolbar
 } from "primevue";
 import pinia from "./pinia.js";
+import router from "./router/index.js";
 
 const app = createApp(App);
 app.use(i18n)
     .use(pinia)
+    .use(router)
     .use(PrimeVue, {theme: { preset: Material}, ripple: true})
     .use(ConfirmationService)
     .use(DialogService)
