@@ -9,7 +9,7 @@ import Material from '@primevue/themes/material';
 import {
     Button,
     Card,
-    Checkbox,
+    Checkbox, Column,
     ConfirmationService,
     ConfirmDialog,
     DataTable,
@@ -38,6 +38,7 @@ app.use(i18n)
     .use(ToastService)
     .component('pv-button',         Button)
     .component('pv-card',           Card)
+    .component('pv-column',         Column)
     .component('pv-confirm-dialog', ConfirmDialog)
     .component('pv-checkbox',       Checkbox)
     .component('pv-data-table',     DataTable)
