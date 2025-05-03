@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 import './style.css'
 import App from './App.vue'
 import i18n from "./i18n.js";
@@ -9,12 +9,14 @@ import Material from '@primevue/themes/material';
 import {
     Button,
     Card,
-    Checkbox, Column,
+    Checkbox,
+    Column,
     ConfirmationService,
     ConfirmDialog,
     DataTable,
     Dialog,
-    DialogService, Drawer,
+    DialogService,
+    Drawer,
     FileUpload,
     FloatLabel,
     IconField,
@@ -22,10 +24,15 @@ import {
     InputNumber,
     InputText,
     Menu,
-    Rating, Row,
+    Rating,
+    Row,
     Select,
-    SelectButton, Tag, Textarea, Toast,
-    ToastService, Toolbar
+    SelectButton,
+    Tag,
+    Textarea,
+    Toast,
+    ToastService,
+    Toolbar
 } from "primevue";
 import pinia from "./pinia.js";
 
