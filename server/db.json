@@ -3,6 +3,10 @@
     {
       "id": 1,
       "name": "Vue.js"
+    },
+    {
+      "id": 2,
+      "name": "ASP.NET Core"
     }
   ]
 }
