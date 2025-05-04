@@ -1,3 +1,12 @@
 {
-
+  "option": {
+    "home": "Home",
+    "about": "About",
+    "categories": "Categories"
+  },
+  "authoring-phrase": {
+    "intro": "Made with",
+    "use": "using",
+    "author": "by {brand} Developer Team"
+  }
 }
