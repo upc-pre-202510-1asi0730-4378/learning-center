@@ -1,0 +1,148 @@
+@startuml
+
+    package "shared" {
+        package "services" {
+            class HttpInstance {
+                - baseURL: string
+                - headers: Object
+                + get(url: string): Promise<any>
+                + post(url: string, data: any): Promise<any>
+                + put(url: string, data: any): Promise<any>
+                + delete(url: string): Promise<any>
+                + {static} getInstance(): HttpInstance
+            }
+        }
+        package "components" {
+            class DataManagerComponent <<Component>> {
+                - title: Object
+                - items: any[]
+                + onNewItemRequested()
+                + onEditItemRequested(item: any)
+                + onDeleteItemRequested(item: any)
+                + onDeleteSelectedItemsRequested(items: any[])
+            }
+
+            class CreateAndEditComponent <<Component>> {
+                - edit: boolean
+                - visible: boolean
+                - item: any
+                + onCancelRequested()
+                + onSaveRequested(item: any)
+            }
+        }
+    }
+
+    package "publishing" {
+        package "model" {
+            class Category {
+                - id: string
+                - name: string
+                + Category(data: Object)
+            }
+        }
+
+        package "services" {
+            class CategoryService <<Service>> {
+                - http: HttpInstance
+                + getAll(): Promise<Category[]>
+                + create(category: Category): Promise<Category>
+                + update(id: string, category: Category): Promise<Category>
+                + delete(id: string): Promise<void>
+            }
+        }
+
+        package "components" {
+            class CategoryItemCreateAndEditComponent <<Component>> {
+                - edit: boolean
+                - item: Category
+                - visible: boolean
+                + onCancelRequested()
+                + onSaveRequested(item: Category)
+            }
+        }
+
+        package "pages" {
+            class CategoryManagementComponent <<Component>> {
+                - title: Object
+                - categories: Category[]
+                - category: Category
+                - selectedCategories: Category[]
+                - categoryService: CategoryService
+                - createAndEditDialogIsVisible: boolean
+                - isEdit: boolean
+                - submitted: boolean
+                + notifySuccessfulAction(message: string)
+                + findIndexById(id: string): number
+                + onNewItem()
+                + onEditItem(item: Category)
+                + onDeleteItem(item: Category)
+                + onDeleteSelectedItems(selectedItems: Category[])
+                + onCancelRequested()
+                + onSaveRequested(item: Category)
+                + createCategory()
+                + updateCategory()
+                + deleteCategory()
+                + deleteSelectedCategories()
+            }
+        }
+    }
+
+    package "public" {
+        package "pages" {
+            class HomeComponent <<Component>> {
+                + created()
+                + mounted()
+            }
+
+            class AboutComponent <<Component>> {
+                + created()
+                + mounted()
+            }
+
+            class PageNotFoundComponent <<Component>> {
+                + created()
+                + mounted()
+            }
+        }
+        package "components" {
+            class LanguageSwitcherComponent <<Component>> {
+                - languages: string[]
+                - currentLanguage: string
+                + changeLanguage(language: string)
+            }
+            class FooterComponent <<Component>> {
+                + created()
+                + mounted()
+            }
+         }
+    }
+
+
+
+' Relationships
+CategoryManagementComponent --> CategoryService: uses
+CategoryManagementComponent --> Category: manages
+CategoryManagementComponent --> DataManagerComponent: uses
+CategoryManagementComponent --> CategoryItemCreateAndEditComponent: uses
+CategoryItemCreateAndEditComponent --|> CreateAndEditComponent: extends
+CategoryService --> HttpInstance: uses
+CategoryService --> Category: handles
+HttpInstance ..> HttpInstance: <<singleton>>
+
+note right of HttpInstance
+  Singleton pattern:
+  Manages HTTP requests with
+  axios instance
+end note
+
+note right of CreateAndEditComponent
+  Base component for
+  create/edit dialogs
+end note
+
+note right of DataManagerComponent
+  Base component for
+  data management
+end note
+
+@enduml
