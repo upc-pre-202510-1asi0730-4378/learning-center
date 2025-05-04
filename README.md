@@ -35,7 +35,7 @@ The application is developed with [Vue Framework](https://vuejs.org/) and the fo
 - PrimeVue (https://primevue.org/)
 - Vue Router (https://router.vuejs.org/)
 - json-server (https://github.com/typicode/json-server/tree/v0)
-- Vue i18n (https://kazupon.github.io/vue-i18n/)
+- Vue i18n (https://vue-i18n.intlify.dev/)
 - Pinia (https://pinia.vuejs.org/)
 
 ## Fake API Start
