@@ -1,16 +1,17 @@
 <script>
   import LanguageSwitcher from "./public/components/language-switcher.component.vue";
+  import FooterContent from "./public/components/footer-content.component.vue";
 
   export default {
     name: 'App',
-    components: {LanguageSwitcher},
+    components: {FooterContent, LanguageSwitcher},
     data() {
       return {
         drawer: false,
         items: [
-          {label: 'Home',       to: '/home'},
-          {label: 'About',      to: '/about'},
-          {label: 'Categories', to: '/publishing/categories'}
+          {label: 'option.home',       to: '/home'},
+          {label: 'option.about',      to: '/about'},
+          {label: 'option.categories', to: '/publishing/categories'}
         ]
       }
     },
@@ -34,7 +35,7 @@
       <template #center>
         <div class="flex-column">
           <pv-button v-for="item in items" :key="item.label" as-child v-slot="slotProps">
-            <router-link :to="item.to" :class="slotProps['class']">{{ item.label }}</router-link>
+            <router-link :to="item.to" :class="slotProps['class']">{{ $t(item.label) }}</router-link>
           </pv-button>
         </div>
       </template>
@@ -47,7 +48,27 @@
   <main>
     <router-view/>
   </main>
+  <footer>
+    <footer-content/>
+  </footer>
 </template>
 
 <style scoped>
+
+header {
+  flex: 0 0 auto;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  padding: 10px;
+}
+
 </style>
