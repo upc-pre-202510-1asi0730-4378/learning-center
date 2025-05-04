@@ -33,9 +33,9 @@
       </template>
       <template #center>
         <div class="flex-column">
-          <router-link v-for="item in items" :key="item.label" v-slot="{navigate, href}" :to="item.to" custom>
-            <pv-button :href="href" @click="navigate">{{ item.label }}</pv-button>
-          </router-link>
+          <pv-button v-for="item in items" :key="item.label" as-child v-slot="slotProps">
+            <router-link :to="item.to" :class="slotProps['class']">{{ item.label }}</router-link>
+          </pv-button>
         </div>
       </template>
       <template #end>

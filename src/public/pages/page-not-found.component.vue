@@ -7,7 +7,7 @@ export default {
     }
   },
   created() {
-    this.unavailableRoute = this.$route.params["pathMatch"];
+    this.unavailableRoute = this.$route.path;
   }
 }
 </script>
@@ -16,7 +16,7 @@ export default {
   <div class="w-full">
     <h1>Page not found</h1>
     <p>The path {{ unavailableRoute }} is not available.</p>
-    <router-link to="home">Go to Home</router-link>
+    <router-link to="/home">Go to Home</router-link>
   </div>
 </template>
 

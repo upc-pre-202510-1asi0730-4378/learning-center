@@ -35,7 +35,7 @@ import {
 } from "primevue";
 import pinia from "./pinia.js";
 import router from "./router/index.js";
-import App from "./app.vue";
+import App from "./App.vue";
 
 const app = createApp(App);
 app.use(i18n)
