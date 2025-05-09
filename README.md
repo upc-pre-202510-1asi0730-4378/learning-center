@@ -41,3 +41,7 @@ The application is developed with [Vue Framework](https://vuejs.org/) and the fo
 ## Fake API Start
 
 Write the following commands in the terminal to start the fake/mock API server.
+```bash
+cd server
+sh start.sh
+```
